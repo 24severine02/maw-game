@@ -1,6 +1,5 @@
 Maw — Game Spec
-Online multiplayer browser card game with in-game voice chat. Built with Claude Fable in Claude
-Code.
+Online multiplayer browser card game with in-game voice chat. Built with the help of Claude Code.
 1. Setup
         Players: 2–8, online only, joined via room invite link.
         Decks: 1 standard 52-card deck for 2 players, 2 decks (104 cards) for 3+ players. Deck count is
@@ -13,6 +12,7 @@ Code.
     2. If no playable card: draw 1. If it's playable, may play it immediately. Otherwise pass.
     3. Draw pile empty → shuffle discard pile (except top card) into new draw pile.
 3. Special cards
+   
 Card                     Effect
 
 Queen                    Reverse direction
@@ -71,19 +71,12 @@ Jack                                                      20
        players remain, 1 deck for the final).
        When 2 players remain, that round is the final. Its winner wins the game.
        If eliminations leave only the round winner, they win the game.
-6. Assumptions to confirm
-    1. Maw timing: must be pressed before the turn passes. Call-out is valid until the next card is
-       played.
-    2. Mamaw forgotten: after a last card is played without Mamaw, there's a 5s call-out window. If
-       called out: draw 2, round continues. If not: win stands.
  3. Starting 9: no effect (nobody played it). Starting Jack: first player chooses the suit.
  4. Jack on a Jack-acting-as-7: still counts as a 7 (stacks).
 7. Tech
     Frontend: Next.js / React.
-    Game server: Node.js + Socket.io (or Colyseus). Server is authoritative: holds deck and hands,
+    Game server: Node.js + Socket.io. Server is authoritative: holds deck and hands,
     validates moves, sends each client only its own hand.
-    Voice: WebRTC mesh (fine up to 8 players) with STUN + TURN (coturn), signalling over the
-    game socket. Alternative: LiveKit if mesh quality is poor.
     Rooms: create room → share link → lobby (nickname, mic check, deck count shown) → host
     starts.
     Hosting: Docker on Azure.
