@@ -1,0 +1,19 @@
+{
+  "name": "maw",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @maw/engine build && concurrently -k -n engine,server,web -c blue,magenta,green \"pnpm --filter @maw/engine dev\" \"pnpm --filter @maw/server dev\" \"pnpm --filter @maw/web dev\"",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm --filter @maw/engine build && pnpm -r typecheck",
+    "test": "pnpm --filter @maw/engine build && pnpm -r test",
+    "coverage": "pnpm --filter @maw/engine build && pnpm -r coverage"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.7"
+  }
+}
